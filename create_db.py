@@ -15,6 +15,7 @@ CREATE TABLE IF NOT EXISTS decks (
     scheme TEXT,
     wins INTEGER,
     loses INTEGER,
+    created TEXT DEFAULT CURRENT_DATE,
     FOREIGN KEY(owner)
         REFERENCES owners(owner_name)
         ON UPDATE CASCADE
