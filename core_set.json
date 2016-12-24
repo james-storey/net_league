@@ -1,0 +1,302 @@
+[
+  {
+    "name": "Accelerated Beta Test",
+    "qty": 3,
+    "type": "agenda"
+  },
+  {
+    "name": "Adonis Campaign",
+    "qty": 3,
+    "type": "asset"
+  },
+  {
+    "name": "Aggressive Secratery",
+    "qty": 2,
+    "type": "asset"
+  },
+  {
+    "name": "Heimdall 1.0",
+    "qty": 2,
+    "type": "ice"
+  },
+  {
+    "name": "Ichi 1.0",
+    "qty": 3,
+    "type": "ice"
+  },
+  {
+    "name": "Rototurret",
+    "qty": 2,
+    "type": "ice"
+  },
+  {
+    "name": "Viktor 1.0",
+    "qty": 2,
+    "type": "ice"
+  },
+  {
+    "name": "Haas-Bioroid",
+    "qty": 1,
+    "type": "identity"
+  },
+  {
+    "name": "Archived Memories",
+    "qty": 2,
+    "type": "operation"
+  },
+  {
+    "name": "Biotic Labor",
+    "qty": 3,
+    "type": "operation"
+  },
+  {
+    "name": "Shipment from MirrorMorph",
+    "qty": 2,
+    "type": "operation"
+  },
+  {
+    "name": "Corportate Troubleshooter",
+    "qty": 1,
+    "type": "upgrade"
+  },
+  {
+    "name": "Exepiential Data",
+    "qty": 2,
+    "type": "upgrade"
+  },
+  {
+    "name": "Nisei MK II",
+    "qty": 3,
+    "type": "agenda"
+  },
+  {
+    "name": "Project Junebug",
+    "qty": 3,
+    "type": "asset"
+  },
+  {
+    "name": "Snare!",
+    "qty": 3,
+    "type": "asset"
+  },
+  {
+    "name": "Zaibatsu Loyalty",
+    "qty": 1,
+    "type": "asset"
+  },
+  {
+    "name": "Cell Portal",
+    "qty": 2,
+    "type": "ice"
+  },
+  {
+    "name": "Chum",
+    "qty": 2,
+    "type": "ice"
+  },
+  {
+    "name": "Data Mine",
+    "qty": 2,
+    "type": "ice"
+  },
+  {
+    "name": "Neural Katana",
+    "qty": 3,
+    "type": "ice"
+  },
+  {
+    "name": "Wall of Thorns",
+    "qty": 3,
+    "type": "ice"
+  },
+  {
+    "name": "Jinteki",
+    "qty": 1,
+    "type": "identity"
+  },
+  {
+    "name": "Neural EMP",
+    "qty": 2,
+    "type": "operation"
+  },
+  {
+    "name": "Precognition",
+    "qty": 2,
+    "type": "operation"
+  },
+  {
+    "name": "Akitaro Watanabe",
+    "qty": 1,
+    "type": "upgrade"
+  },
+  {
+    "name": "Astroscript Pilot Program",
+    "qty": 2,
+    "type": "agenda"
+  },
+  {
+    "name": "Breaking News",
+    "qty": 2,
+    "type": "agenda"
+  },
+  {
+    "name": "Ghost Branch",
+    "qty": 3,
+    "type": "asset"
+  },
+  {
+    "name": "Data Raven",
+    "qty": 3,
+    "type": "ice"
+  },
+  {
+    "name": "Matrix Analyzer",
+    "qty": 3,
+    "type": "ice"
+  },
+  {
+    "name": "Tollbooth",
+    "qty": 3,
+    "type": "ice"
+  },
+  {
+    "name": "NBN",
+    "qty": 1,
+    "type": "identity"
+  },
+  {
+    "name": "Anonymous Tip",
+    "qty": 2,
+    "type": "operation"
+  },
+  {
+    "name": "Closed Accounts",
+    "qty": 2,
+    "type": "operation"
+  },
+  {
+    "name": "Psychographics",
+    "qty": 2,
+    "type": "operation"
+  },
+  {
+    "name": "SEA Source",
+    "qty": 2,
+    "type": "operation"
+  },
+  {
+    "name": "Red Herrings",
+    "qty": 2,
+    "type": "upgrade"
+  },
+  {
+    "name": "SanSan City Grid",
+    "qty": 1,
+    "type": "upgrade"
+  },
+  {
+    "name": "Hostile Takeover",
+    "qty": 3,
+    "type": "agenda"
+  },
+  {
+    "name": "Posted Bounty",
+    "qty": 2,
+    "type": "agenda"
+  },
+  {
+    "name": "Security Subcontract",
+    "qty": 1,
+    "type": "asset"
+  },
+  {
+    "name": "Archer",
+    "qty": 2,
+    "type": "ice"
+  },
+  {
+    "name": "Hadrian's Wall",
+    "qty": 2,
+    "type": "ice"
+  },
+  {
+    "name": "Ice Wall",
+    "qty": 3,
+    "type": "ice"
+  },
+  {
+    "name": "Shadow",
+    "qty": 3,
+    "type": "ice"
+  },
+  {
+    "name": "Weyland Consortium",
+    "qty": 1,
+    "type": "ice",
+  },
+  {
+    "name": "Aggressive Negotiation",
+    "qty": 2,
+    "type": "operation"
+  },
+  {
+    "name": "Beanstalk Royalties",
+    "qty": 3,
+    "type": "operation"
+  },
+  {
+    "name": "Scorched Earth",
+    "qty": 2,
+    "type": "operation"
+  },
+  {
+    "name": "Shipment from Kaguya",
+    "qty": 2,
+    "type": "operation"
+  },
+  {
+    "name": "Research Station",
+    "qty": 2,
+    "type": "upgrade"
+  },
+  {
+    "name": "Priority Requisition",
+    "qty": 3,
+    "type": "agenda"
+  },
+  {
+    "name": "Private Security Force",
+    "qty": 3,
+    "type": "agenda"
+  },
+  {
+    "name": "Melange Mining Corp.",
+    "qty": 2,
+    "type": "asset"
+  },
+  {
+    "name": "Enigma",
+    "qty": 3,
+    "type": "ice"
+  },
+  {
+    "name": "Hunter",
+    "qty": 2,
+    "type": "ice"
+  },
+  {
+    "name": "Wall of Static",
+    "qty": 3,
+    "type": "ice"
+  },
+  {
+    "name": "Hedge Fund",
+    "qty": 3,
+    "type": "operation"
+  },
+  {
+    "name": "PAD Campaign",
+    "qty": 3,
+    "type": "upgrade"
+  }
+]
