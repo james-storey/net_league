@@ -232,7 +232,7 @@
   {
     "name": "Weyland Consortium",
     "qty": 1,
-    "type": "ice",
+    "type": "ice"
   },
   {
     "name": "Aggressive Negotiation",
@@ -298,5 +298,270 @@
     "name": "PAD Campaign",
     "qty": 3,
     "type": "upgrade"
+  },
+  {
+    "name": "Déjà Vu",
+    "qty": 2,
+    "type": "event"
+  },
+  {
+    "name": "Demolition Run",
+    "qty": 3,
+    "type": "event"
+  },
+  {
+    "name": "Stimhack",
+    "qty": 3,
+    "type": "event"
+  },
+  {
+    "name": "Grimoire",
+    "qty": 1,
+    "type": "hardware"
+  },
+  {
+    "name":"Cyberfeeder",
+    "qty": 3,
+    "type": "hardware"
+  },
+  {
+    "name": "Noise",
+    "qty": 1,
+    "type": "identity"
+  },
+  {
+    "name": "Corroder",
+    "qty": 2,
+    "type": "program"
+  },
+  {
+    "name": "Datasucker",
+    "qty": 2,
+    "type": "program"
+  },
+  {
+    "name": "Djinn",
+    "qty": 2,
+    "type": "program"
+  },
+  {
+    "name": "Medium",
+    "qty": 2,
+    "type": "program"
+  },
+  {
+    "name": "Mimic",
+    "qty": 2,
+    "type": "program"
+  },
+  {
+    "name": "Parasite",
+    "qty": 3,
+    "type": "program"
+  },
+  {
+    "name": "Wyrm",
+    "qty": 2,
+    "type": "program"
+  },
+  {
+    "name": "Yog.0",
+    "qty": 2,
+    "type": "program"
+  },
+  {
+    "name": "Ice Carver",
+    "qty": 1,
+    "type": "resource"
+  },
+  {
+    "name": "WyldSide",
+    "qty": 2,
+    "type": "resource"
+  },
+  {
+    "name": "Account Siphon",
+    "qty": 2,
+    "type": "event"
+  },
+  {
+    "name": "Easy Mark",
+    "qty": 3,
+    "type": "event"
+  },
+  {
+    "name": "Forged Activation Orders",
+    "qty": 3,
+    "type": "event"
+  },
+  {
+    "name": "Inside Job",
+    "qty": 3,
+    "type": "event"
+  },
+  {
+    "name": "Special Order",
+    "qty": 3,
+    "type": "event"
+  },
+  {
+    "name": "Desperado",
+    "qty": 1,
+    "type": "hardware"
+  },
+  {
+    "name": "Lemurta Codecraker",
+    "qty": 2,
+    "type": "hardware"
+  },
+  {
+    "name": "Gabrial Santiago",
+    "qty": 1,
+    "type": "identity"
+  },
+  {
+    "name": "Aurora",
+    "qty": 2,
+    "type": "program"
+  },
+  {
+    "name": "Femme Fatale",
+    "qty": 2,
+    "type": "program"
+  },
+  {
+    "name": "Ninja",
+    "qty": 2,
+    "type": "program"
+  },
+  {
+    "name": "Sneakdoor Beta",
+    "qty": 2,
+    "type": "program"
+  },
+  {
+    "name": "Bank Job",
+    "qty": 2,
+    "type": "resource"
+  },
+  {
+    "name": "Crash Space",
+    "qty": 2,
+    "type": "resource"
+  },
+  {
+    "name": "Data Dealer",
+    "qty": 1,
+    "type": "resource"
+  },
+  {
+    "name": "Decoy",
+    "qty": 2,
+    "type": "resource"
+  },
+  {
+    "name": "Diesel",
+    "qty": 3,
+    "type": "event"
+  },
+  {
+    "name": "Modded",
+    "qty": 2,
+    "type": "event"
+  },
+  {
+    "name": "The Maker's Eye",
+    "qty": 3,
+    "type": "event"
+  },
+  {
+    "name": "Tinkering",
+    "qty": 3,
+    "type": "event"
+  },
+  {
+    "name": "The Toolbox",
+    "qty": 1,
+    "type": "hardware"
+  },
+  {
+    "name": "Akamatsu Mem Chip",
+    "qty": 2,
+    "type": "hardware"
+  },
+  {
+    "name": "Rabbit Hole",
+    "qty": 2,
+    "type": "hardware"
+  },
+  {
+    "name": "The Personal Touch",
+    "qty": 2,
+    "type": "hardware"
+  },
+  {
+    "name": "Kate 'Mac' McCaffrey",
+    "qty": 1,
+    "type": "identity"
+  },
+  {
+    "name": "Battering Ram",
+    "qty": 2,
+    "type": "program"
+  },
+  {
+    "name": "Gordian Blade",
+    "qty": 3,
+    "type": "program"
+  },
+  {
+    "name": "Magnum Opus",
+    "qty": 2,
+    "type": "program"
+  },
+  {
+    "name": "Net Shield",
+    "qty": 2,
+    "type": "program"
+  },
+  {
+    "name": "Pipeline",
+    "qty": 2,
+    "type": "program"
+  },
+  {
+    "name": "Aesop's Pawnshop",
+    "qty": 1,
+    "type": "resource"
+  },
+  {
+    "name": "Sacrificial Construct",
+    "qty": 2,
+    "type": "resource"
+  },
+  {
+    "name": "Infiltration",
+    "qty": 3,
+    "type": "event"
+  },
+  {
+    "name": "Sure Gamble",
+    "qty": 3,
+    "type": "event"
+  },
+  {
+    "name": "Access to Globalsec",
+    "qty": 3,
+    "type": "hardware"
+  },
+  {
+    "name": "Crypsis",
+    "qty": 3,
+    "type": "program"
+  },
+  {
+    "name": "Armitage Codebusting",
+    "qty": 3,
+    "type": "resource"
   }
 ]
