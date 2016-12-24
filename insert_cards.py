@@ -12,9 +12,9 @@ for i in range(len(sys.argv)):
     if __file__ == sys.argv[i]:
         continue
     elif '-o' == sys.argv[i]:
-        owner = sys.argv[i++]
+        owner = sys.argv[i+1]
     if i == len(sys.argv) - 1:
-        input_file = sys.argv[i]
+        input_filename = sys.argv[i]
 
 input_file = open(input_filename, 'r')
 card_list = json.load(input_file)
