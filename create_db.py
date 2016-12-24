@@ -1,11 +1,10 @@
 #!/usr/bin/python
 
-create_owners = '''
+create_db = '''
 CREATE TABLE IF NOT EXISTS owners (
     owner_name PRIMARY KEY
 );
-'''
-create_decks = '''
+
 CREATE TABLE IF NOT EXISTS decks (
     deck_id INTEGER PRIMARY KEY,
     deck_name TEXT NOT NULL,
@@ -21,8 +20,7 @@ CREATE TABLE IF NOT EXISTS decks (
         ON UPDATE CASCADE
         ON DELETE CASCADE
 );
-'''
-create_cards = '''
+
 CREATE TABLE IF NOT EXISTS cards (
     card_id INTEGER PRIMARY KEY,
     card_name TEXT NOT NULL,
@@ -34,9 +32,6 @@ CREATE TABLE IF NOT EXISTS cards (
 
 import sqlite3
 conn = sqlite3.connect('netrunner.db')
-c = conn.cursor()
-c.execute(create_owners)
-c.execute(create_decks)
-c.execute(create_cards)
+c = conn.executescript(create_db)
 conn.commit()
 conn.close()
