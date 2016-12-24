@@ -28,6 +28,14 @@ CREATE TABLE IF NOT EXISTS cards (
     owner TEXT REFERENCES owners(owner_name) ON UPDATE CASCADE ON DELETE CASCADE,
     used_in_deck INTEGER REFERENCES decks(deck_id) ON UPDATE CASCADE ON DELETE SET NULL
 );
+
+CREATE TABLE IF NOT EXISTS games (
+    game_id INTEGER PRIMARY KEY,
+    winning_deck INTEGER REFERENCES decks(deck_id) ON UPDATE CASCADE ON DELETE SET NULL,
+    losing_deck INTEGER REFERENCES decks(deck_id) ON UPDATE CASCADE ON DELETE SET NULL,
+    game_date TEXT,
+    notes TEXT
+);
 '''
 
 
