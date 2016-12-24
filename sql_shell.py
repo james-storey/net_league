@@ -21,10 +21,11 @@ while True:
         try:
             buffer = buffer.strip()
             cur.execute(buffer)
-            headers = []
-            for title in cur.description:
-                headers.append(title[0])
-            print(tabulate(cur.fetchall(), headers=headers, tablefmt='orgtbl'))
+            if buffer.lstrip().upper().startswith("SELECT"):
+                headers = []
+                for title in cur.description:
+                    headers.append(title[0])
+                print(tabulate(cur.fetchall(), headers=headers, tablefmt='orgtbl'))
         except sqlite3.Error as e:
             print("An error occurred:", e.args[0])
         buffer = ""
