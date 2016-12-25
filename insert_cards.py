@@ -16,15 +16,15 @@ for i in range(len(sys.argv)):
     if i == len(sys.argv) - 1:
         input_filename = sys.argv[i]
 
-input_file = open(input_filename, 'r')
+input_file = open(input_filename, 'r', encoding='utf-8')
 card_list = json.load(input_file)
 input_file.close()
 
 conn = sqlite3.connect('netrunner.db')
 for card in card_list:
-    for i in range(card['qty']):
+    for i in range(card['quantity']):
         conn.execute("INSERT INTO"
             + " cards(card_name, type, owner, used_in_deck)"
-            + " VALUES(?,?,?,NULL)", [card['name'], card['type'], owner])
+            + " VALUES(?,?,?,NULL)", [card['title'], card['type_code'], owner])
 conn.commit()
 conn.close()
