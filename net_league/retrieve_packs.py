@@ -16,6 +16,6 @@ for card in card_list['data']:
     pack_lists[card['pack_code']].append(card)
 
 for key in pack_lists:
-    pack = open("packs/" + key + ".json", 'w', encoding='utf-8')
+    pack = open("../packs/" + key + ".json", 'w', encoding='utf-8')
     json.dump(pack_lists[key], pack, indent=2)
     pack.close()
