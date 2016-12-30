@@ -8,12 +8,11 @@ CREATE TABLE IF NOT EXISTS owners (
 CREATE TABLE IF NOT EXISTS decks (
     deck_id INTEGER PRIMARY KEY,
     deck_name TEXT NOT NULL,
-    identity TEXT,
     active INTEGER DEFAULT 0,
     owner TEXT,
-    scheme TEXT,
-    wins INTEGER,
-    loses INTEGER,
+    card_list TEXT,
+    wins INTEGER DEFAULT 0,
+    loses INTEGER DEFAULT 0,
     created TEXT DEFAULT CURRENT_DATE,
     FOREIGN KEY(owner)
         REFERENCES owners(owner_name)
@@ -41,6 +40,6 @@ CREATE TABLE IF NOT EXISTS games (
 
 import sqlite3
 conn = sqlite3.connect('netrunner.db')
-c = conn.executescript(create_db)
+conn.executescript(create_db)
 conn.commit()
 conn.close()
