@@ -6,23 +6,20 @@ deck_filename = None
 owner = None
 deck_name = None
 
-#def parse_deck(deck_file):
-#    for line in deck_file.split('\n'):
-#        num, *title = line.split(' ')
-#        title = ' '.join(title)
-#
-
 def check_card_list_syntax(card_list):
-    for line in deck_file.split('\n'):
-        num, *title = line.splite(' ')
+    for line in card_list.split('\n'):
+        if len(line) == 0:
+            continue
+        num, *title = line.split(' ')
         title = ' '.join(title)
+        print(num, title)
         try:
             num = int(num)
         except ValueError:
             return False
     return True
 
-for i in len(sys.argv):
+for i in range(len(sys.argv)):
     if __file__ == sys.argv[i]:
         continue
     if sys.argv[i] == '-o':
@@ -45,7 +42,7 @@ f = open(deck_filename, 'r')
 card_list = f.read()
 f.close()
 if check_card_list_syntax(card_list) == False:
-    print('card list syntax error: expecting jenteki.net syntax, Exiting')
+    print('card list syntax error: expecting jinteki.net syntax, Exiting')
     sys.exit(1)
 
 conn = sqlite3.connect('netrunner.db')
