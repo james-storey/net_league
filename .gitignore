@@ -1,2 +1,7 @@
 *-journal
 *.db
+env
+Lib
+Scripts
+pip-selfcheck.json
+pyvenv.cfg

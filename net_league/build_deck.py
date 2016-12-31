@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 
 import sqlite3
 import sys
@@ -15,10 +15,14 @@ def build_card_list(card_list):
         # if card not available by deck owner,
         #  flag and add to print out for followup
 
-for i in range(len(sys.argv)):
-    if __file__ == sys.argv[i]:
-        continue
-    if sys.argv[i] == '-n':
-        deck_name = sys.argv[i+1]
-    elif sys.argv[i] == '-o':
-        deck_owner = sys.argv[i+1]
+def run(argv):
+    for i in range(len(argv)):
+        if __file__ == argv[i]:
+            continue
+        if argv[i] == '-n':
+            deck_name = argv[i+1]
+        elif argv[i] == '-o':
+            deck_owner = argv[i+1]
+
+if __name__ == "__main__":
+    run(argv)

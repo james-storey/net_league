@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python
 
 import sqlite3
 import sys
@@ -19,36 +19,40 @@ def check_card_list_syntax(card_list):
             return False
     return True
 
-for i in range(len(sys.argv)):
-    if __file__ == sys.argv[i]:
-        continue
-    if sys.argv[i] == '-o':
-        owner = sys.argv[i+1]
-    elif sys.argv[i] == '-n':
-        deck_name = sys.argv[i+1]
-    elif sys.argv[i] == '-f':
-        deck_filename = sys.argv[i+1]
-    elif i == len(sys.argv) - 1 and deck_filename is None:
-        deck_filename = sys.argv[i]
+def run(argv):
+    for i in range(len(argv)):
+        if __file__ == argv[i]:
+            continue
+        if argv[i] == '-o':
+            owner = argv[i+1]
+        elif argv[i] == '-n':
+            deck_name = argv[i+1]
+        elif argv[i] == '-f':
+            deck_filename = argv[i+1]
+        elif i == len(argv) - 1 and deck_filename is None:
+            deck_filename = argv[i]
 
-if owner is None:
-    print('No owner specified, Exiting')
-    sys.exit(1)
-if deck_name is None:
-    print('No deck name specified, Exiting')
-    sys.exit(1)
+    if owner is None:
+        print('No owner specified, Exiting')
+        sys.exit(1)
+    if deck_name is None:
+        print('No deck name specified, Exiting')
+        sys.exit(1)
 
-f = open(deck_filename, 'r')
-card_list = f.read()
-f.close()
-if check_card_list_syntax(card_list) == False:
-    print('card list syntax error: expecting jinteki.net syntax, Exiting')
-    sys.exit(1)
+    f = open(deck_filename, 'r')
+    card_list = f.read()
+    f.close()
+    if check_card_list_syntax(card_list) == False:
+        print('card list syntax error: expecting jinteki.net syntax, Exiting')
+        sys.exit(1)
 
-conn = sqlite3.connect('netrunner.db')
-conn.execute('''
-    INSERT INTO decks(deck_name, owner, card_list)
-    VALUES(?, ?, ?);
-''', [deck_name, owner, card_list])
-conn.commit()
-conn.close()
+    conn = sqlite3.connect('netrunner.db')
+    conn.execute('''
+        INSERT INTO decks(deck_name, owner, card_list)
+        VALUES(?, ?, ?);
+    ''', [deck_name, owner, card_list])
+    conn.commit()
+    conn.close()
+
+if __name__ == "__main__":
+    run(sys.argv)

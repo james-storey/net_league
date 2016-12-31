@@ -1,4 +1,6 @@
-#!/usr/bin/python
+#!/usr/bin/env python
+
+import sqlite3
 
 create_db = '''
 CREATE TABLE IF NOT EXISTS owners (
@@ -37,9 +39,11 @@ CREATE TABLE IF NOT EXISTS games (
 );
 '''
 
+def run():
+    conn = sqlite3.connect('netrunner.db')
+    conn.executescript(create_db)
+    conn.commit()
+    conn.close()
 
-import sqlite3
-conn = sqlite3.connect('netrunner.db')
-conn.executescript(create_db)
-conn.commit()
-conn.close()
+if __name__ == "__main__":
+    run()
