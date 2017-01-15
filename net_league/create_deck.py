@@ -2,9 +2,7 @@
 
 import sqlite3
 import sys
-deck_filename = None
-owner = None
-deck_name = None
+
 
 def check_card_list_syntax(card_list):
     for line in card_list.split('\n'):
@@ -20,6 +18,9 @@ def check_card_list_syntax(card_list):
     return True
 
 def run(argv):
+    deck_filename = None
+    owner = None
+    deck_name = None
     for i in range(len(argv)):
         if __file__ == argv[i]:
             continue
