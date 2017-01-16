@@ -48,10 +48,13 @@ def run(argv):
         sys.exit(1)
 
     conn = sqlite3.connect('netrunner.db')
-    conn.execute('''
-        INSERT INTO decks(deck_name, owner, card_list)
-        VALUES(?, ?, ?);
-    ''', [deck_name, owner, card_list])
+    if len(conn.execute('''
+            SELECT deck_id FROM decks WHERE deck_name = ? AND owner = ?;
+        ''', [deck_name, owner]).fetchall()) < 1:
+        conn.execute('''
+            INSERT INTO decks(deck_name, owner, card_list)
+            VALUES(?, ?, ?);
+            ''', [deck_name, owner, card_list])
     conn.commit()
     conn.close()
 
