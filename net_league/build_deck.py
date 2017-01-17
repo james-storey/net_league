@@ -53,6 +53,8 @@ def run(argv):
     conn = sqlite3.connect(db)
     deck = get_deck(conn, deck_owner, deck_name)
     unfinished = build_deck(conn, deck, deck_owner, deck_name)
+    conn.commit('''UPDATE decks SET active = 1
+        WHERE deck_id = ?;''', [deck[0]])
     print(unfinished)
     conn.commit()
     conn.close()
