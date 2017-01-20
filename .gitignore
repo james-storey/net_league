@@ -5,3 +5,5 @@ Lib
 Scripts
 pip-selfcheck.json
 pyvenv.cfg
+.vagrant
+*.log
