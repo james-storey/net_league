@@ -4,7 +4,7 @@ import sys
 
 def get_deck(conn, deck_owner, deck_name):
     return conn.execute('''SELECT deck_id, card_list FROM decks
-        WHERE owner = ? AND deck_name = ?;
+        WHERE owner = ? AND deck_name = ? ORDER BY version DESC;
     ''', [deck_owner, deck_name]).fetchone()
 
 def build_deck(conn, deck, deck_owner, deck_name):
