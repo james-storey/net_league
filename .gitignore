@@ -1,6 +1,6 @@
 *-journal
 *.db
-env
+*env/
 Lib
 Scripts
 pip-selfcheck.json
