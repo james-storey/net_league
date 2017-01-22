@@ -10,6 +10,7 @@ CREATE TABLE IF NOT EXISTS owners (
 CREATE TABLE IF NOT EXISTS decks (
     deck_id INTEGER PRIMARY KEY,
     deck_name TEXT NOT NULL,
+    version INTEGER DEFAULT 1,
     active INTEGER DEFAULT 0,
     owner TEXT,
     card_list TEXT,

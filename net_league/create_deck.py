@@ -1,8 +1,6 @@
 #!/usr/bin/env python
-
 import sqlite3
 import sys
-
 
 def check_card_list_syntax(card_list):
     for line in card_list.split('\n'):
@@ -21,6 +19,7 @@ def run(argv):
     deck_filename = None
     owner = None
     deck_name = None
+    db = 'netrunner.db'
     for i in range(len(argv)):
         if __file__ == argv[i]:
             continue
@@ -47,7 +46,7 @@ def run(argv):
         print('card list syntax error: expecting jinteki.net syntax, Exiting')
         sys.exit(1)
 
-    conn = sqlite3.connect('netrunner.db')
+    conn = sqlite3.connect(db)
     if len(conn.execute('''
             SELECT deck_id FROM decks WHERE deck_name = ? AND owner = ?;
         ''', [deck_name, owner]).fetchall()) < 1:
