@@ -7,11 +7,17 @@ def get_deck(conn, deck_owner, deck_name):
         WHERE owner = ? AND deck_name = ? ORDER BY version DESC;
     ''', [deck_owner, deck_name]).fetchone()
 
-def remove_cards(conn, id):
+def remove_owned_cards(conn, id, card_owner):
     conn.execute('''UPDATE cards SET used_in_deck = NULL
-        WHERE used_in_deck = ?;
-    ''', [id])
+        WHERE used_in_deck = ? and owner = ?;
+    ''', [id, card_owner])
 
+def remove_unowned_cards(conn, id):
+    c = conn.execute('''SELECT card_id, card_name, owner
+        FROM cards WHERE used_in_deck = ?''', [id]).fetchall()
+    conn.execute('''UPDATE cards SET used_in_deck = NULL
+        WHERE used_in_deck = ?;''', [id])
+    return c
 def run(argv):
     deck_name = None
     deck_owner = None
@@ -25,7 +31,9 @@ def run(argv):
             deck_owner = argv[i+1]
     conn = sqlite3.connect(db)
     deck_id, card_list = get_deck(conn, deck_owner, deck_name)
-    remove_cards(conn, deck_id)
+    remove_owned_cards(conn, deck_id, deck_owner)
+    return_list = remove_unowned_cards(conn, deck_id)
+    print(return_list)
     conn.execute('''UPDATE decks SET active = 0
         WHERE deck_id = ?;''', [deck_id])
     conn.commit()
