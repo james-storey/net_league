@@ -1,4 +1,9 @@
 #!/usr/bin/env python3
+# Update a card list on an existing deck
+# This script will create a new deck with a fresh win / lose record and an
+# incremented version number
+# old decks are kept around and must be deleted manually if erasing them
+# is desirable
 import sqlite3
 import sys
 

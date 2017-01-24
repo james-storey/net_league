@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# Use this script to add new owners to the database
 import sqlite3
 import sys
 

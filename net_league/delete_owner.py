@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# Use to delete an owner from the database
+# This will delete the owner and all the cards that are linked with them
 
 import sqlite3
 import sys

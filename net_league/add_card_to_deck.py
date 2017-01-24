@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+# Use after building a deck that could not be completed with the owners own cards
+# This script allows the user to add cards directly from other owner's tableau
+# Use build_deck to add cards to a deck from ones own tableau 
 import sqlite3
 import sys
 

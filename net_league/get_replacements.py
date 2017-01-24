@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+# Use after building a deck that finished incomplete
+# This script finds the cards from other owners in the leauge that
+#   have the cards needed but are not currently using them
 import sqlite3
 import sys
 

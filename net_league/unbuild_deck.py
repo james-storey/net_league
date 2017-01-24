@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+# Dismantle a built deck.
+# This also prints a list of cards that need to be returned to their rightful
+# owners now that their cards are no longer in use
 import sqlite3
 import sys
 

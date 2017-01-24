@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# interactive shell to run arbitrary administrative querys on the database
 import sqlite3
 from tabulate import tabulate
 

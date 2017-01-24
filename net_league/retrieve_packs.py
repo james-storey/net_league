@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# Retrieve the latest pack info direct from netrunnerdb
 
 import sys
 import json

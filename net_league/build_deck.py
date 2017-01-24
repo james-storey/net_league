@@ -1,4 +1,9 @@
 #!/usr/bin/env python3
+# Use this script to build a deck already added to the database
+#  This will check all of the indicated owners cards and add any available
+#  to the deck.
+#  If the card is not owned, or in use in another deck, the script will
+#  indicate in a print out what is missing.
 import sqlite3
 import sys
 

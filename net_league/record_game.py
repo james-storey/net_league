@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+# Use to record a game using at least one deck in the leauge
+# This script sets the aggregate record on a specific deck
+# To record a specific game with details, use the add_game script
 import sqlite3
 import sys
 

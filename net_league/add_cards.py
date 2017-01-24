@@ -1,5 +1,7 @@
 #!/usr/bin/env python
-
+# Use this script to add cards by data pack to the users tableau of cards.
+# This script will not check if you add from the same data pack twice
+# check that you do not already have the pack with the inspect_db script
 import json
 import sqlite3
 import sys

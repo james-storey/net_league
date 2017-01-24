@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# deletes the named deck from the game. This action will also free all
+# linked cards from being in the deleted deck
 
 import sqlite3
 import sys

@@ -1,4 +1,7 @@
 #!/usr/bin/env python
+# Use this script to add a new deck to the database.
+#  Decks are expected to have the jenteki.net format for storing the
+#  list of cards in the deck
 import sqlite3
 import sys
 
