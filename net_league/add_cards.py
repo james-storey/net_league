@@ -3,6 +3,7 @@
 import json
 import sqlite3
 import sys
+import os
 
 def run(argv):
     db = 'netrunner.db'
@@ -21,10 +22,10 @@ def run(argv):
     filename = ''
     if input_file.find('.json') > -1:
         filename = input_file
-        pack_name = input_filename.split('.')[0]
+        pack_name = os.path.basename(input_file).split('.')[0]
     else:
         filename = input_file + '.json'
-        pack_name = input_file
+        pack_name = os.path.basename(input_file)
     f = open(filename, 'r', encoding='utf-8')
     card_list = json.load(f)
     f.close()
