@@ -52,7 +52,7 @@ CREATE TABLE IF NOT EXISTS cards (
     color TEXT,
     type TEXT,
     cmc TEXT,
-    run TEXT,
+    'set' TEXT,
     owner TEXT REFERENCES owners(owner_name) ON UPDATE CASCADE ON DELETE CASCADE,
     used_in_deck INTEGER REFERENCES decks(deck_id) ON UPDATE CASCADE ON DELETE SET NULL
 );
