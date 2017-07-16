@@ -7,7 +7,10 @@ import sqlite3
 import sys
 
 def run(argv):
-    db = 'netrunner.db'
+    db = 'card.db'
+    for i in range(len(argv)):
+        if argv[i] == '-n':
+            db = argv[i+1]
     conn = sqlite3.connect(db)
 
     owners = conn.execute('''

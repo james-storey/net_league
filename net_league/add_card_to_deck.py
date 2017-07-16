@@ -19,7 +19,7 @@ def run(argv):
     deck_name = None
     deck_owner = None
     card_id = None
-    db = 'netrunner.db'
+    db = 'card.db'
     for i in range(len(argv)):
         if __file__ == argv[i]:
             continue
@@ -29,6 +29,8 @@ def run(argv):
             deck_owner = argv[i+1]
         elif argv[i] == '-c':
             card_id = argv[i+1]
+        elif argv[i] == '-n':
+            db = argv[i+1]
     conn = sqlite3.connect(db)
     deck_id, card_list = get_deck(conn, deck_owner, deck_name)
     add_to_deck(conn, deck_id, card_id)

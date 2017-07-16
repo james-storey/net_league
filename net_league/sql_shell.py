@@ -1,10 +1,15 @@
 #!/usr/bin/env python
 # interactive shell to run arbitrary administrative querys on the database
+import sys
 import sqlite3
 from tabulate import tabulate
 
-def run():
-    con = sqlite3.connect('netrunner.db')
+def run(argv):
+    db = 'card.db'
+    for i in range(len(argv)):
+        if argv[i] == '-n':
+            db = argv[i+1]
+    con = sqlite3.connect(db)
     con.isolation_level = None
     cur = con.cursor()
 
@@ -35,4 +40,4 @@ def run():
     con.close()
 
 if __name__ == "__main__":
-    run()
+    run(sys.argv)

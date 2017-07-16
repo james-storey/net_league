@@ -10,8 +10,10 @@ def delete_owners(conn, owners):
 
 def run(argv):
     owners = []
-    db = 'netrunner.db'
+    db = 'card.db'
     for i in range(len(argv)):
+        if argv[i] == '-n':
+            db = argv[i+1]
         if __file__ == argv[i]:
             continue
         owners.append(argv[i])

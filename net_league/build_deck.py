@@ -47,14 +47,16 @@ def build_deck(conn, deck, deck_owner, deck_name):
 def run(argv):
     deck_name = None
     deck_owner = None
-    db = 'netrunner.db'
+    db = 'card.db'
     for i in range(len(argv)):
         if __file__ == argv[i]:
             continue
-        if argv[i] == '-n':
+        if '-d' == argv[i]:
             deck_name = argv[i+1]
-        elif argv[i] == '-o':
+        elif '-o' == argv[i]:
             deck_owner = argv[i+1]
+        elif '-n' == argv[i]:
+            db = argv[i+1]
     conn = sqlite3.connect(db)
     deck = get_deck(conn, deck_owner, deck_name)
     unfinished = build_deck(conn, deck, deck_owner, deck_name)

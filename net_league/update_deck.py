@@ -42,11 +42,11 @@ def run(argv):
     deck_name = None
     deck_owner = None
     deck_filename = None
-    db = 'netrunner.db'
+    db = 'card.db'
     for i in range(len(argv)):
         if __file__ == argv[i]:
             continue
-        if argv[i] == '-n':
+        if argv[i] == '-d':
             deck_name = argv[i+1]
         elif argv[i] == '-o':
             deck_owner = argv[i+1]
@@ -54,6 +54,8 @@ def run(argv):
             deck_filename = argv[i+1]
         elif i == len(argv) - 1 and deck_filename is None:
             deck_filename = argv[i]
+        elif argv[i] == '-n':
+            db = argv[i+1]
     if deck_owner is None:
         print('No owner specified, exiting')
         sys.exit(1)

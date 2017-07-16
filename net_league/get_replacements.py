@@ -43,14 +43,16 @@ def run(argv):
     deck_name = None
     deck_owner = None
     card_name = None
-    db = 'netrunner.db'
+    db = 'card.db'
     for i in range(len(argv)):
         if __file__ == argv[i]:
             continue
-        if argv[i] == '-n':
+        if argv[i] == '-d':
             deck_name = argv[i+1]
         elif argv[i] == '-o':
             deck_owner = argv[i+1]
+        elif argv[i] == '-n':
+            db = argv[i+1]
     conn = sqlite3.connect(db)
     target_deck = get_deck(conn, deck_owner, deck_name)
     candidates = get_candidates(conn, target_deck, False)

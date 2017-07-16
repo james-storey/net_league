@@ -5,11 +5,15 @@ import sys
 
 def run(argv):
     owners = []
+    db = 'card.db'
     for i in range(len(argv)):
+        if '-n' == argv[i]:
+            db = argv[i+1]
+            i += 2
         if __file__ != argv[i]:
             owners.append( (argv[i],) )
-
-    conn = sqlite3.connect('netrunner.db')
+        
+    conn = sqlite3.connect(db)
     conn.executemany("INSERT OR REPLACE INTO owners(owner_name) VALUES (lower(trim(?)))", owners)
     conn.commit()
     conn.close()
