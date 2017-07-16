@@ -23,15 +23,6 @@ CREATE TABLE IF NOT EXISTS decks (
         ON DELETE CASCADE
 );
 
-CREATE TABLE IF NOT EXISTS cards (
-    card_id INTEGER PRIMARY KEY,
-    card_name TEXT NOT NULL,
-    type TEXT,
-    pack TEXT,
-    owner TEXT REFERENCES owners(owner_name) ON UPDATE CASCADE ON DELETE CASCADE,
-    used_in_deck INTEGER REFERENCES decks(deck_id) ON UPDATE CASCADE ON DELETE SET NULL
-);
-
 CREATE TABLE IF NOT EXISTS games (
     game_id INTEGER PRIMARY KEY,
     winning_deck INTEGER REFERENCES decks(deck_id) ON UPDATE CASCADE ON DELETE SET NULL,
@@ -41,11 +32,51 @@ CREATE TABLE IF NOT EXISTS games (
 );
 '''
 
-def run():
-    conn = sqlite3.connect('netrunner.db')
+nr_cards = '''
+
+CREATE TABLE IF NOT EXISTS cards (
+    card_id INTEGER PRIMARY KEY,
+    card_name TEXT NOT NULL,
+    type TEXT,
+    pack TEXT,
+    owner TEXT REFERENCES owners(owner_name) ON UPDATE CASCADE ON DELETE CASCADE,
+    used_in_deck INTEGER REFERENCES decks(deck_id) ON UPDATE CASCADE ON DELETE SET NULL
+);
+'''
+
+mtg_cards = '''
+
+CREATE TABLE IF NOT EXISTS cards (
+    card_id INTEGER PRIMARY KEY,
+    card_name TEXT NOT NULL,
+    color TEXT,
+    type TEXT,
+    cmc TEXT,
+    run TEXT,
+    owner TEXT REFERENCES owners(owner_name) ON UPDATE CASCADE ON DELETE CASCADE,
+    used_in_deck INTEGER REFERENCES decks(deck_id) ON UPDATE CASCADE ON DELETE SET NULL
+);
+'''
+
+def run(argv):
+    db_name = 'card.db'
+    db_type = 'nr'
+    for i in range(len(argv)):
+        if __file__ == argv[i]:
+            continue
+        if argv[i] == '-n':
+            db_name = argv[i+1]
+        elif argv[i] == '-t':
+            db_type = argv[i+1]
+    create_script = None
+    if db_type == 'nr':
+        create_script = create_db + nr_cards
+    elif db_type == 'mtg':
+        create_script = create_db + mtg_cards
+    conn = sqlite3.connect(db_name)
     conn.executescript(create_db)
     conn.commit()
     conn.close()
 
 if __name__ == "__main__":
-    run()
+    run(sys.argv)
