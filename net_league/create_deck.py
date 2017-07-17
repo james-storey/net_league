@@ -18,6 +18,18 @@ def check_card_list_syntax(card_list):
             return False
     return True
 
+def create_deck(card_list, db):
+    conn = sqlite3.connect(db)
+    if len(conn.execute('''
+            SELECT deck_id FROM decks WHERE deck_name = ? AND owner = ?;
+        ''', [deck_name, owner]).fetchall()) < 1:
+        conn.execute('''
+            INSERT INTO decks(deck_name, owner, card_list)
+            VALUES(?, ?, ?);
+            ''', [deck_name, owner, card_list])
+    conn.commit()
+    conn.close()
+
 def run(argv):
     deck_filename = None
     owner = None
@@ -50,17 +62,7 @@ def run(argv):
     if check_card_list_syntax(card_list) == False:
         print('card list syntax error: expecting jinteki.net syntax, Exiting')
         sys.exit(1)
-
-    conn = sqlite3.connect(db)
-    if len(conn.execute('''
-            SELECT deck_id FROM decks WHERE deck_name = ? AND owner = ?;
-        ''', [deck_name, owner]).fetchall()) < 1:
-        conn.execute('''
-            INSERT INTO decks(deck_name, owner, card_list)
-            VALUES(?, ?, ?);
-            ''', [deck_name, owner, card_list])
-    conn.commit()
-    conn.close()
-
+    create_deck(card_list, db)
+    
 if __name__ == "__main__":
     run(sys.argv)

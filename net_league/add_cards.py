@@ -21,38 +21,7 @@ INSERT INTO cards(
 VALUES(?,?,?,?,NULL)
 '''
 
-def run(argv):
-    db = 'card.db'
-    input_file = None
-    owner = None
-    type = 'nr'
-
-    for i in range(len(argv)):
-        if __file__ == argv[i]:
-            continue
-        elif '-o' == argv[i]:
-            owner = argv[i+1]
-        elif '-n' == argv[i]:
-            db = argv[i+1]
-        elif '-t' == argv[i]:
-            type = argv[i+1]
-        if i == len(argv) - 1:
-            input_file = argv[i]
-
-    pack_name = ''
-    filename = ''
-    if input_file.find('.json') > -1:
-        filename = input_file
-        if type == 'nr':
-            pack_name = os.path.basename(input_file).split('.')[0]
-    else:
-        filename = input_file + '.json'
-        if type == 'nr':
-            pack_name = os.path.basename(input_file)
-    f = open(filename, 'r', encoding='utf-8')
-    card_list = json.load(f)
-    f.close()
-
+def add_cards(card_list, owner, db):
     conn = sqlite3.connect(db)
     for card in card_list:
         for i in range(card['quantity']):
@@ -77,5 +46,40 @@ def run(argv):
     conn.commit()
     conn.close()
 
+def run(argv):
+    db = 'card.db'
+    input_file = None
+    owner = None
+    type = 'nr'
+
+    for i in range(len(argv)):
+        if __file__ == argv[i]:
+            continue
+        elif '-o' == argv[i]:
+            owner = argv[i+1]
+        elif '-n' == argv[i]:
+            db = argv[i+1]
+        elif '-t' == argv[i]:
+            type = argv[i+1]
+        if i == len(argv) - 1:
+            input_file = argv[i]
+
+
+    # deserialize the card manifest
+    pack_name = ''
+    filename = ''
+    if input_file.find('.json') > -1:
+        filename = input_file
+        if type == 'nr':
+            pack_name = os.path.basename(input_file).split('.')[0]
+    else:
+        filename = input_file + '.json'
+        if type == 'nr':
+            pack_name = os.path.basename(input_file)
+    f = open(filename, 'r', encoding='utf-8')
+    card_list = json.load(f)
+    f.close()
+    add_cards(card_list, owner, db)
+    
 if __name__ == "__main__":
     run(sys.argv)

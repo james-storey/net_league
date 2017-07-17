@@ -58,16 +58,7 @@ CREATE TABLE IF NOT EXISTS cards (
 );
 '''
 
-def run(argv):
-    db_name = 'card.db'
-    db_type = 'nr'
-    for i in range(len(argv)):
-        if __file__ == argv[i]:
-            continue
-        if argv[i] == '-n':
-            db_name = argv[i+1]
-        elif argv[i] == '-t':
-            db_type = argv[i+1]
+def create_db(db_name, db_type):
     create_script = None
     if db_type == 'nr':
         create_script = create_db + nr_cards
@@ -78,5 +69,17 @@ def run(argv):
     conn.commit()
     conn.close()
 
+def run(argv):
+    db_name = 'card.db'
+    db_type = 'nr'
+    for i in range(len(argv)):
+        if __file__ == argv[i]:
+            continue
+        if argv[i] == '-n':
+            db_name = argv[i+1]
+        elif argv[i] == '-t':
+            db_type = argv[i+1]
+    create_db(db_name, db_type)
+    
 if __name__ == "__main__":
     run(sys.argv)

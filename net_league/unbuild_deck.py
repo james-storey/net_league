@@ -21,6 +21,18 @@ def remove_unowned_cards(conn, id):
     conn.execute('''UPDATE cards SET used_in_deck = NULL
         WHERE used_in_deck = ?;''', [id])
     return c
+
+def unbuild_deck(deck_name, deck_owner, db):
+    conn = sqlite3.connect(db)
+    deck_id, card_list = get_deck(conn, deck_owner, deck_name)
+    remove_owned_cards(conn, deck_id, deck_owner)
+    return_list = remove_unowned_cards(conn, deck_id)
+    print(return_list)
+    conn.execute('''UPDATE decks SET active = 0
+        WHERE deck_id = ?;''', [deck_id])
+    conn.commit()
+    conn.close()
+
 def run(argv):
     deck_name = None
     deck_owner = None
@@ -34,15 +46,6 @@ def run(argv):
             deck_owner = argv[i+1]
         elif argv[i] == '-n':
             db = argv[i+1]
-    conn = sqlite3.connect(db)
-    deck_id, card_list = get_deck(conn, deck_owner, deck_name)
-    remove_owned_cards(conn, deck_id, deck_owner)
-    return_list = remove_unowned_cards(conn, deck_id)
-    print(return_list)
-    conn.execute('''UPDATE decks SET active = 0
-        WHERE deck_id = ?;''', [deck_id])
-    conn.commit()
-    conn.close()
 
 if __name__ == "__main__":
     run(sys.argv)

@@ -15,6 +15,14 @@ def add_to_deck(conn, deck_id, card_id):
         WHERE card_id = ?;
     ''', [deck_id, card_id])
 
+def add_card_to_deck(deck_owner, deck_name, card_id, db):
+    conn = sqlite3.connect(db)
+    deck_id, card_list = get_deck(conn, deck_owner, deck_name)
+    add_to_deck(conn, deck_id, card_id)
+    conn.commit()
+    conn.close()
+
+
 def run(argv):
     deck_name = None
     deck_owner = None
@@ -31,11 +39,7 @@ def run(argv):
             card_id = argv[i+1]
         elif argv[i] == '-n':
             db = argv[i+1]
-    conn = sqlite3.connect(db)
-    deck_id, card_list = get_deck(conn, deck_owner, deck_name)
-    add_to_deck(conn, deck_id, card_id)
-    conn.commit()
-    conn.close()
+    add_card_to_deck(deck_owner, deck_name, card_id, db)
 
 if __name__ == '__main__':
     run(sys.argv)

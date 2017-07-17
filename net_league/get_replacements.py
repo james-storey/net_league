@@ -39,6 +39,13 @@ def get_candidates(conn, target_deck, even_used):
             candidates[card_name].append(c)
     return candidates
 
+def get_replacements(deck_name, deck_owner, card_name, db):
+    conn = sqlite3.connect(db)
+    target_deck = get_deck(conn, deck_owner, deck_name)
+    candidates = get_candidates(conn, target_deck, False)
+    conn.close()
+    return candidates
+
 def run(argv):
     deck_name = None
     deck_owner = None
@@ -53,11 +60,8 @@ def run(argv):
             deck_owner = argv[i+1]
         elif argv[i] == '-n':
             db = argv[i+1]
-    conn = sqlite3.connect(db)
-    target_deck = get_deck(conn, deck_owner, deck_name)
-    candidates = get_candidates(conn, target_deck, False)
-    print(candidates)
-    conn.close()
+    replacements = get_replacements(deck_name, deck_owner, card_name, db)
+    print(replacements)
 
 if __name__ == "__main__":
     run(sys.argv)

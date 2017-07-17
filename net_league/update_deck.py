@@ -19,7 +19,7 @@ def get_deck(conn, deck_owner, deck_name):
         'loses': row[4]
     }
 
-def update_deck(conn, deck_name, deck_owner, card_list, version):
+def insert_deck_update(conn, deck_name, deck_owner, card_list, version):
     return conn.execute('''INSERT INTO
         decks(deck_name, owner, card_list, version)
         VALUES(?, ?, ?, ?);
@@ -37,6 +37,14 @@ def check_card_list_syntax(card_list):
         except ValueError:
             return False
     return True
+
+def update_deck(deck_name, deck_owner, deck_card_list, db):
+    conn = sqlite3.connect(db)
+    deck = get_deck(conn, deck_owner, deck_name)
+    insert_deck_update(conn, deck_name, deck_owner,
+        deck_card_list, deck['version'])
+    conn.commit()
+    conn.close()
 
 def run(argv):
     deck_name = None
@@ -69,12 +77,7 @@ def run(argv):
     if check_card_list_syntax(deck_card_list) == False:
         print('card list syntax error: expecting jinteki.net syntax, exiting')
         sys.exit(1)
+    update_deck(deck_name, deck_owner, deck_card_list, db)
 
-    conn = sqlite3.connect(db)
-    deck = get_deck(conn, deck_owner, deck_name)
-    update_deck(conn, deck_name, deck_owner,
-        deck_card_list, deck['version']);
-    conn.commit()
-    conn.close()
 if __name__ == '__main__':
     run(sys.argv)

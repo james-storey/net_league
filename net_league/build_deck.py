@@ -12,7 +12,7 @@ def get_deck(conn, deck_owner, deck_name):
         WHERE owner = ? AND deck_name = ? ORDER BY version DESC;
     ''', [deck_owner, deck_name]).fetchone()
 
-def build_deck(conn, deck, deck_owner, deck_name):
+def build_deck_and_get_missing(conn, deck, deck_owner, deck_name):
     unfinished = []
     deck_id, card_list = deck
     for line in card_list.split('\n'):
@@ -44,6 +44,16 @@ def build_deck(conn, deck, deck_owner, deck_name):
         unfinished.extend(followup)
     return unfinished
 
+def build_deck(deck_owner, deck_name, db):
+    conn = sqlite3.connect(db)
+    deck = get_deck(conn, deck_owner, deck_name)
+    unfinished = build_deck_and_get_missing(conn, deck, deck_owner, deck_name)
+    conn.execute('''UPDATE decks SET active = 1
+        WHERE deck_id = ?;''', [deck[0]])
+    conn.commit()
+    conn.close()
+    return unfinished
+
 def run(argv):
     deck_name = None
     deck_owner = None
@@ -57,14 +67,8 @@ def run(argv):
             deck_owner = argv[i+1]
         elif '-n' == argv[i]:
             db = argv[i+1]
-    conn = sqlite3.connect(db)
-    deck = get_deck(conn, deck_owner, deck_name)
-    unfinished = build_deck(conn, deck, deck_owner, deck_name)
-    conn.execute('''UPDATE decks SET active = 1
-        WHERE deck_id = ?;''', [deck[0]])
-    print(unfinished)
-    conn.commit()
-    conn.close()
-
+    missing = build_deck(deck_owner, deck_name, db)
+    print(missing)
+    
 if __name__ == "__main__":
     run(sys.argv)

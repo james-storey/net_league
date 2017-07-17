@@ -4,15 +4,19 @@
 import sqlite3
 import sys
 
+def get_owners (db):
+    conn = sqlite3.connect(db)
+    owners = conn.execute('''SELECT * FROM owners;''').fetchall()
+    conn.close()
+    return owners
+
+
 def run (argv):
     db = 'card.db'
     for i in range(len(argv)):
         if '-n' == argv[i]:
             db = argv[i+1]
-    conn = sqlite3.connect(db)
-    owners = conn.execute('''SELECT * FROM owners;''').fetchall()
     print(owners)
-    conn.close()
 
 if __name__ == '__main__':
     run(sys.argv)

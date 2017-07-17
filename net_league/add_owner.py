@@ -3,6 +3,12 @@
 import sqlite3
 import sys
 
+def add_owner(owners, db):
+    conn = sqlite3.connect(db)
+    conn.executemany("INSERT OR REPLACE INTO owners(owner_name) VALUES (lower(trim(?)))", owners)
+    conn.commit()
+    conn.close()
+
 def run(argv):
     owners = []
     db = 'card.db'
@@ -13,10 +19,5 @@ def run(argv):
         if __file__ != argv[i]:
             owners.append( (argv[i],) )
         
-    conn = sqlite3.connect(db)
-    conn.executemany("INSERT OR REPLACE INTO owners(owner_name) VALUES (lower(trim(?)))", owners)
-    conn.commit()
-    conn.close()
-
 if __name__ == "__main__":
     run(sys.argv)

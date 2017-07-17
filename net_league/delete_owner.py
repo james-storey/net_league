@@ -5,8 +5,12 @@
 import sqlite3
 import sys
 
-def delete_owners(conn, owners):
+def delete_owners(owners, db):
+    conn = sqlite3.connect(db)
     conn.executemany('''DELETE FROM owners WHERE owner_name = ?;''', owners)
+    conn.commit()
+    conn.close()
+
 
 def run(argv):
     owners = []
@@ -17,10 +21,7 @@ def run(argv):
         if __file__ == argv[i]:
             continue
         owners.append(argv[i])
-    conn = sqlite3.connect(db)
-    delete_owners(conn, owners)
-    conn.commit()
-    conn.close()
+    delete_owners(owners, db)
 
 if __name__ == "__main__":
     run(sys.argv)

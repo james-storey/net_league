@@ -11,8 +11,12 @@ def get_deck(conn, deck_owner, deck_name):
     ''', [deck_owner, deck_name]).fetchone()
 
 
-def delete_deck(conn, deck_id):
+def delete_deck(deck_id, db):
+    conn = sqlite3.connect(db)
+    deck_id, card_list = get_deck(conn, deck_owner, deck_name)
     conn.execute('''DELETE FROM decks WHERE deck_id = ?;''', [deck_id])
+    conn.commit()
+    conn.close()
 
 def run(argv):
     deck_name = None
@@ -27,11 +31,6 @@ def run(argv):
             deck_owner = argv[i+1]
         elif argv[i] == '-n':
             db = argv[i+1]
-    conn = sqlite3.connect(db)
-    deck_id, card_list = get_deck(conn, deck_owner, deck_name)
-    delete_deck(conn, deck_id)
-    conn.commit()
-    conn.close()
 
 if __name__ == "__main__":
     run(sys.argv)

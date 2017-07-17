@@ -5,6 +5,11 @@
 import sqlite3
 import sys
 
+def get_deck(conn, deck_owner, deck_name):
+    return conn.execute('''SELECT deck_id, card_list FROM decks
+        WHERE owner = ? AND deck_name = ? ORDER BY version DESC;
+    ''', [deck_owner, deck_name]).fetchone()
+
 def set_result(conn, deck_id, win):
     if(win == True):
         return conn.execute('''UPDATE decks
@@ -14,6 +19,13 @@ def set_result(conn, deck_id, win):
         return conn.execute('''UPDATE decks
             SET loses = loses + 1 WHERE deck_id = ?;
         ''', [deck_id])
+
+def record_game(deck_name, deck_owner, win, db):
+    conn = sqlite3.connect(db)
+    deck_id, card_list = get_deck(conn, deck_owner, deck_name)
+    set_result(conn, deck_id, win)
+    conn.commit()
+    conn.close()
 
 def run(argv):
     deck_name = None
@@ -36,11 +48,6 @@ def run(argv):
     if win is None:
         print("win / lose status not set, exiting")
         sys.exit(0)
-    conn = sqlite3.connect(db)
-    deck_id, card_list = get_deck(conn, deck_owner, deck_name)
-    set_result(conn, deck_id, win)
-    conn.commit()
-    conn.close()
 
 if __name__ == '__main__':
     run(sys.argv)
