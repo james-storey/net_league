@@ -1,20 +1,34 @@
 #!/bin/usr/env python3
 # build a deck for the given user with the starting state in the repository
-
+import os
 import toml
+import json
+from os.path import join
+
+cardlist = []
+for root, dirs, files in os.walk("../packs")
+	for name in files:
+		cardlist += json.load(join(root,name))
 
 def lookup_card(title):
 	# lookup info from master list
+	for card in cardlist:
+		if card.title == title:
+			return card
+	return None
 
-def add_card(info, quantity):
+def add_card(option_list, info, quantity):
 	# sanity check before returning op
+	quantity = min(quantity, info.deck_limit)
+	option_list.append(info, quantity)
+	return option_list
 
 def parse_jenteki_deck(deckstring):
 	ops = []
 	decklist = deckstring.splitlines()
 	for line in decklist:
 		(quantity, sep, name) = line.partition(" ")
-		ops.append(add_card(lookup_card(name), quantity))
+		add_card(ops, lookup_card(name), quantity)
 	return ops
 
 def build_deck(owner, name):
@@ -29,10 +43,10 @@ def build_deck(owner, name):
 		# if not, check other owners for copies
 		# if still not, throw error
 		card_owner = owner
-		user_packs[op.pack_id][op.title] = { 
-			"in": name, 
-			"q": op["quantity"], 
-			"owner": card_owner 
+		user_packs[op.pack_id][op.title] = {
+			"in": name,
+			"q": op["quantity"],
+			"owner": card_owner
 		}
 	toml.dump(user_packs, user_packs_file)
 
